@@ -4,11 +4,49 @@
     margin-top: 5rem;
     display: flex;
     flex-direction: column;
-    max-width: 900px;
-    background-color: aqua;
+    max-width: 300px;
+    background-color: #A5B9FF;
 }
 
 .Timer {
+    margin-top: 1rem;
     margin-right: auto;
     margin-left: auto;
+    font-size: 3em;
+}
+
+.TimerBtns {
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    display: flex;
+    /* background-color: black; */
+    height: 3rem
+}
+
+.Btn {
+    cursor: pointer;
+    background-color: #A5B9FF;
+    /* background-color: #000000; */
+    border: 0px;
+    /* height: 1.5rem; */
+    width: 2rem;
+    /* padding: 0.5rem; */
+    border-radius: 100%;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+}
+
+.Btn img {
+    height: 1.5rem;
+    background-color: #A5B9FF;
+}
+
+.Btn .Pause {
+    height: 1.2rem;
+}
+
+.Btn .Play {
+    height: 1.8rem;
 }
