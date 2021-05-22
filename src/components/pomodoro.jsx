@@ -4,6 +4,7 @@ import play from '../assets/play.png';
 import reset from '../assets/reset.png';
 import sleep from '../assets/rest.png'
 import pause from '../assets/pause.svg'
+import iconTimer from '../assets/iconTimer.png'
 import './pomodoro.css';
 
 function Pomodoro() {
@@ -17,7 +18,9 @@ function Pomodoro() {
     const sec = time % 60;
 
     useEffect(() => {
-        Notification.requestPermission();
+        if (Notification.permission !== 'granted') {
+            Notification.requestPermission();
+        }
     }, []);
 
     useEffect(() => {
@@ -98,6 +101,15 @@ function Pomodoro() {
 
 
         < div className='Card' >
+            {rest ?
+                (
+                    <h2 className='Title'>Pomodoro <img src={sleep} alt="" /></h2>
+                ) :
+                (
+                    <h2 className='Title'>Pomodoro <img className='TimerIcon'src={iconTimer} alt="" /></h2>
+                )}
+            {/* <h2 className='Title'>Pomodoro <img src={sleep} alt="" /></h2> */}
+
             <div className='Timer'>
                 {min < 10 ? (`0${min}`) : (min)}:{sec < 10 ? (`0${sec}`) : (sec)}
             </div>
