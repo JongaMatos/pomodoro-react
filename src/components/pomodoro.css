@@ -1,0 +1,14 @@
+.Card {
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 5rem;
+    display: flex;
+    flex-direction: column;
+    max-width: 900px;
+    background-color: aqua;
+}
+
+.Timer {
+    margin-right: auto;
+    margin-left: auto;
+}
