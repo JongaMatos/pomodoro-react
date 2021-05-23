@@ -1,19 +1,26 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import { GeneralContext, GeneralProvider } from '../context/generalContext'
 
 import play from '../assets/play.png';
 import reset from '../assets/reset.png';
-import sleep from '../assets/rest.png'
-import pause from '../assets/pause.svg'
-import iconTimer from '../assets/iconTimer.png'
+import sleep from '../assets/rest.png';
+import pause from '../assets/pause.svg';
+import iconTimer from '../assets/iconTimer.png';
+import more from '../assets/more.png';
+
 import './pomodoro.css';
 
 function Pomodoro() {
+    const { taskTime, restTime } = useContext(GeneralContext);
+
+
     let countdownTimeout;
-    const taskTime = 0.1 * 60;
-    const restTime = 0.05 * 60;
+    // const taskTime = 0.1 * 60;
+    // const restTime = 0.05 * 60;
     const [time, setTime] = useState(taskTime);
     const [running, setRunning] = useState(false);
     const [rest, setRest] = useState(false);
+    const [openMenu, setOpenMenu] = useState(false);
     const min = Math.floor(time / 60);
     const sec = time % 60;
 
@@ -21,6 +28,8 @@ function Pomodoro() {
         if (Notification.permission !== 'granted') {
             Notification.requestPermission();
         }
+        console.log({ taskTime });
+        console.log({ restTime });
     }, []);
 
     useEffect(() => {
@@ -96,20 +105,55 @@ function Pomodoro() {
             new Notification("Acabou descanso.");
         }
     }
+    const pomodoroTimer = () => {
+        if (!openMenu) {
+            return (
+                <>
+                    {rest ?
+                        (
+                            <div className='Head'>
+                                <h2 className='Title'>Pomodoro <img src={sleep} alt="" /></h2>
+                                <button onClick={() => { setOpenMenu(true) }}> <img src={more} alt="" /></button>
+                            </div>
+
+                        ) :
+                        (
+                            <div className='Head'>
+                                <h2 className='Title'>Pomodoro <img className='TimerIcon' src={iconTimer} alt="" /></h2>
+                                <button onClick={() => { setOpenMenu(true) }}> <img src={more} alt="" /></button>
+                            </div>
+                        )}
+                    <div className='Timer'>
+                        {min < 10 ? (`0${min}`) : (min)}:{sec < 10 ? (`0${sec}`) : (sec)}
+                    </div>
+
+                    <div className='TimerBtns'>
+                        {whichBtn()}
+                        {resetBtn()}
+                    </div>
+                </>
+            );
+        }
+    }
 
     return (
 
-
         < div className='Card' >
+
             {rest ?
                 (
-                    <h2 className='Title'>Pomodoro <img src={sleep} alt="" /></h2>
+                    <div className='Head'>
+                        <h2 className='Title'>Pomodoro <img src={sleep} alt="" /></h2>
+                        <button onClick={() => { setOpenMenu(true) }}> <img src={more} alt="" /></button>
+                    </div>
+
                 ) :
                 (
-                    <h2 className='Title'>Pomodoro <img className='TimerIcon'src={iconTimer} alt="" /></h2>
+                    <div className='Head'>
+                        <h2 className='Title'>Pomodoro <img className='TimerIcon' src={iconTimer} alt="" /></h2>
+                        <button onClick={() => { setOpenMenu(true) }}> <img src={more} alt="" /></button>
+                    </div>
                 )}
-            {/* <h2 className='Title'>Pomodoro <img src={sleep} alt="" /></h2> */}
-
             <div className='Timer'>
                 {min < 10 ? (`0${min}`) : (min)}:{sec < 10 ? (`0${sec}`) : (sec)}
             </div>

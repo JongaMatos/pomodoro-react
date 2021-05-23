@@ -3,6 +3,18 @@ Body {
     background-color: #26242D;
 }
 
+.Head{
+    display: flex;
+}
+.Head button{
+    margin-left: 6rem;
+    background-color: #A5B9FF;
+    height: 1.5rem;
+
+}
+.Head button img{
+    height: 0.8rem;
+}
 .Title {
     margin-top: 0.8rem;
     margin-bottom: 0.5rem;
