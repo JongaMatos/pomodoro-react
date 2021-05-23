@@ -6,15 +6,15 @@ export const GeneralContext = createContext();
 
 export function GeneralProvider({ children }) {
 
-    const [taskTime, setTaskTime] = useState(0.1 * 60);
-    const [restTime, setRestTime] = useState(0.05 * 60);
+    const [taskTime, setTaskTime] = useState();
+    const [restTime, setRestTime] = useState();
     const [menuIsOpen, setMenuIsOpen] = useState(false);
     const [soundAlert, setSoundAlert] = useState(true);
     const [notificationOn, setNotificationOn] = useState(true);
 
     useEffect(() => {
-        setTaskTime(0.1 * 60);
-        setRestTime(0.05 * 60);
+        restoreTime();
+
 
     }, []);
     const openMenu = () => {
@@ -30,11 +30,67 @@ export function GeneralProvider({ children }) {
         setNotificationOn(!notificationOn);
     }
 
-    const increaseTaskTime = () => { setTaskTime(taskTime + 60); }
-    const decreaseTaskTime = () => { setTaskTime(taskTime - 60) }
+    const increaseTaskTime = () => {
+        if (taskTime + 60 < 60 * 99) {
+            setTaskTime(taskTime + 60);
+            updateTaskTime();
+        }
+        else {
+            console.log("AAAAAAAAAAAAAAAAAAAAAAAA");
 
-    const increaseRestTime = () => { setRestTime(taskTime + 60); }
-    const decreaseRestTime = () => { setRestTime(taskTime - 60) }
+            console.log({ 'suposto tempo': (taskTime + 60) / 60 });
+
+        }
+    }
+
+    const decreaseTaskTime = () => {
+        if (taskTime - 60 >= 60) {
+            setTaskTime(taskTime - 60);
+            updateTaskTime();
+        }
+    }
+
+    const increaseRestTime = () => {
+        if (restTime + 60 < 99 * 60) {
+            setRestTime(restTime + 60);
+            updateRestTime();
+        }
+    }
+
+    const decreaseRestTime = () => {
+        if (restTime - 60 >= 60) {
+            setRestTime(restTime - 60);
+            updateRestTime();
+        }
+    }
+
+    const restoreTime = () => {
+        const tt = parseInt(localStorage.getItem('taskTime'));
+        if (tt) {
+            setTaskTime(tt);
+        }
+        else {
+            setTaskTime(60 * 0.1);
+        }
+
+        const rt = parseInt(localStorage.getItem('restTime'));
+        if (rt) {
+            setRestTime(rt);
+        }
+        else {
+            setRestTime(60 * 0.1);
+        }
+    }
+
+    const updateTaskTime = () => {
+        localStorage.setItem('taskTime', taskTime);
+    }
+    const updateRestTime = () => {
+        localStorage.setItem('restTime', restTime);
+    }
+    const restoreDeafultTime = () => {
+
+    }
 
     return (
         <GeneralContext.Provider value={{
@@ -51,8 +107,7 @@ export function GeneralProvider({ children }) {
             decreaseTaskTime,
             increaseRestTime,
             decreaseRestTime,
-
-
+            restoreTime,
         }}>
             {children}
         </GeneralContext.Provider>
