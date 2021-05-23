@@ -10,10 +10,10 @@ export function GeneralProvider({ children }) {
     const [restTime, setRestTime] = useState();
     const [menuIsOpen, setMenuIsOpen] = useState(false);
     const [soundAlert, setSoundAlert] = useState(true);
-    const [notificationOn, setNotificationOn] = useState(true);
+    const [notificationOn, setNotificationOn] = useState();
 
     useEffect(() => {
-        restoreTime();
+        restoreStatus();
 
 
     }, []);
@@ -24,47 +24,60 @@ export function GeneralProvider({ children }) {
         setMenuIsOpen(false)
     }
     const changeAlert = () => {
-        setSoundAlert(!soundAlert);
+        if (soundAlert === true) {
+            setSoundAlert(false);
+            localStorage.setItem('soundAlert', false);
+        }
+        else {
+            setSoundAlert(true);
+            localStorage.setItem('soundAlert', true);
+        }
+
     }
     const changeNotificationOn = () => {
-        setNotificationOn(!notificationOn);
+        if (notificationOn === true) {
+            setNotificationOn(false);
+            localStorage.setItem('notificationOn', false);
+        }
+        else {
+            setNotificationOn(true);
+            localStorage.setItem('notificationOn', true);
+        }
+
+
     }
 
     const increaseTaskTime = () => {
         if (taskTime + 60 < 60 * 99) {
+            localStorage.setItem('taskTime', taskTime + 60);
             setTaskTime(taskTime + 60);
-            updateTaskTime();
-        }
-        else {
-            console.log("AAAAAAAAAAAAAAAAAAAAAAAA");
-
-            console.log({ 'suposto tempo': (taskTime + 60) / 60 });
 
         }
     }
 
     const decreaseTaskTime = () => {
         if (taskTime - 60 >= 60) {
+            localStorage.setItem('taskTime', taskTime - 60);
             setTaskTime(taskTime - 60);
-            updateTaskTime();
         }
     }
 
     const increaseRestTime = () => {
         if (restTime + 60 < 99 * 60) {
+            localStorage.setItem('restTime', restTime + 60);
             setRestTime(restTime + 60);
-            updateRestTime();
         }
     }
 
     const decreaseRestTime = () => {
         if (restTime - 60 >= 60) {
+            localStorage.setItem('restTime', restTime - 60);
             setRestTime(restTime - 60);
-            updateRestTime();
         }
     }
 
-    const restoreTime = () => {
+    const restoreStatus = () => {
+        //taskTime
         const tt = parseInt(localStorage.getItem('taskTime'));
         if (tt) {
             setTaskTime(tt);
@@ -72,7 +85,7 @@ export function GeneralProvider({ children }) {
         else {
             setTaskTime(60 * 0.1);
         }
-
+        //restTime
         const rt = parseInt(localStorage.getItem('restTime'));
         if (rt) {
             setRestTime(rt);
@@ -80,14 +93,24 @@ export function GeneralProvider({ children }) {
         else {
             setRestTime(60 * 0.1);
         }
+        //Notificação
+        const nO = localStorage.getItem('notificationOn');
+        if (nO) {
+            setNotificationOn(nO === 'true');
+        }
+        else {
+            setNotificationOn(true);
+        }
+        //Som
+        const sA = localStorage.getItem('soundAlert');
+        if (sA) {
+            setSoundAlert(sA === 'true');
+        }
+        else {
+            setSoundAlert(true);
+        }
     }
 
-    const updateTaskTime = () => {
-        localStorage.setItem('taskTime', taskTime);
-    }
-    const updateRestTime = () => {
-        localStorage.setItem('restTime', restTime);
-    }
     const restoreDeafultTime = () => {
 
     }
@@ -107,7 +130,7 @@ export function GeneralProvider({ children }) {
             decreaseTaskTime,
             increaseRestTime,
             decreaseRestTime,
-            restoreTime,
+            restoreStatus,
         }}>
             {children}
         </GeneralContext.Provider>
