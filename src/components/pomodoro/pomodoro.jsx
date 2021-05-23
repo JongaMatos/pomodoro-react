@@ -1,17 +1,23 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { GeneralContext, GeneralProvider } from '../context/generalContext'
+import { GeneralContext } from '../../context/generalContext'
 
-import play from '../assets/play.png';
-import reset from '../assets/reset.png';
-import sleep from '../assets/rest.png';
-import pause from '../assets/pause.svg';
-import iconTimer from '../assets/iconTimer.png';
-import more from '../assets/more.png';
+import play from '../../assets/play.png';
+import reset from '../../assets/reset.png';
+import sleep from '../../assets/rest.png';
+import pause from '../../assets/pause.svg';
+import iconTimer from '../../assets/iconTimer.png';
+import more from '../../assets/more.png';
 
 import './pomodoro.css';
 
 function Pomodoro() {
-    const { taskTime, restTime } = useContext(GeneralContext);
+    const {
+        taskTime,
+        restTime,
+        openMenu,
+        soundAlert,
+        notificationOn,
+    } = useContext(GeneralContext);
 
 
     let countdownTimeout;
@@ -20,7 +26,6 @@ function Pomodoro() {
     const [time, setTime] = useState(taskTime);
     const [running, setRunning] = useState(false);
     const [rest, setRest] = useState(false);
-    const [openMenu, setOpenMenu] = useState(false);
     const min = Math.floor(time / 60);
     const sec = time % 60;
 
@@ -28,8 +33,7 @@ function Pomodoro() {
         if (Notification.permission !== 'granted') {
             Notification.requestPermission();
         }
-        console.log({ taskTime });
-        console.log({ restTime });
+        handleResetTimer();
     }, []);
 
     useEffect(() => {
@@ -94,45 +98,23 @@ function Pomodoro() {
     }
 
     const taskNotification = () => {
-        if (Notification.permission === 'granted') {
+
+        if (soundAlert) {
             new Audio('/endpomo.wav').play();
+        }
+
+        if (Notification.permission === 'granted' && notificationOn) {
             new Notification("Bora descansar.");
         }
     }
     const restNotification = () => {
-        if (Notification.permission === 'granted') {
+
+        if (soundAlert) {
             new Audio('/endBreakout.mp3').play();
-            new Notification("Acabou descanso.");
         }
-    }
-    const pomodoroTimer = () => {
-        if (!openMenu) {
-            return (
-                <>
-                    {rest ?
-                        (
-                            <div className='Head'>
-                                <h2 className='Title'>Pomodoro <img src={sleep} alt="" /></h2>
-                                <button onClick={() => { setOpenMenu(true) }}> <img src={more} alt="" /></button>
-                            </div>
 
-                        ) :
-                        (
-                            <div className='Head'>
-                                <h2 className='Title'>Pomodoro <img className='TimerIcon' src={iconTimer} alt="" /></h2>
-                                <button onClick={() => { setOpenMenu(true) }}> <img src={more} alt="" /></button>
-                            </div>
-                        )}
-                    <div className='Timer'>
-                        {min < 10 ? (`0${min}`) : (min)}:{sec < 10 ? (`0${sec}`) : (sec)}
-                    </div>
-
-                    <div className='TimerBtns'>
-                        {whichBtn()}
-                        {resetBtn()}
-                    </div>
-                </>
-            );
+        if (Notification.permission === 'granted' && notificationOn) {
+            new Notification("Acabou descanso.");
         }
     }
 
@@ -144,14 +126,14 @@ function Pomodoro() {
                 (
                     <div className='Head'>
                         <h2 className='Title'>Pomodoro <img src={sleep} alt="" /></h2>
-                        <button onClick={() => { setOpenMenu(true) }}> <img src={more} alt="" /></button>
+                        <button onClick={() => { openMenu() }}> <img src={more} alt="" /></button>
                     </div>
 
                 ) :
                 (
                     <div className='Head'>
                         <h2 className='Title'>Pomodoro <img className='TimerIcon' src={iconTimer} alt="" /></h2>
-                        <button onClick={() => { setOpenMenu(true) }}> <img src={more} alt="" /></button>
+                        <button onClick={() => { openMenu() }}> <img src={more} alt="" /></button>
                     </div>
                 )}
             <div className='Timer'>

@@ -1,0 +1,10 @@
+.MenuHead {
+    margin-right: auto;
+    margin-left: auto;
+    display: flex;
+}
+
+.Options {
+    display: flex;
+    flex-direction: column;
+}

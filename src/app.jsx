@@ -1,13 +1,11 @@
 import React from 'react'
-import Pomodoro from './components/pomodoro'
+import HomePage from './pages/homePage'
 import { GeneralProvider } from './context/generalContext'
 function App() {
     return (
-        // <div>
             <GeneralProvider>
-                <Pomodoro />
+                <HomePage></HomePage>
             </GeneralProvider>
-        // </div>
     )
 }
 
