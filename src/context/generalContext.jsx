@@ -42,6 +42,10 @@ export function GeneralProvider({ children }) {
         else {
             setNotificationOn(true);
             localStorage.setItem('notificationOn', true);
+
+            if (Notification.permission !== 'granted') {
+                Notification.requestPermission();
+            }
         }
 
 

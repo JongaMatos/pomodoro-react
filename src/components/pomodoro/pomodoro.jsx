@@ -17,7 +17,6 @@ function Pomodoro() {
         openMenu,
         soundAlert,
         notificationOn,
-        restoreTime,
     } = useContext(GeneralContext);
 
 
@@ -34,7 +33,6 @@ function Pomodoro() {
         if (Notification.permission !== 'granted') {
             Notification.requestPermission();
         }
-        // restoreTime();
         handleResetTimer();
     }, []);
 
