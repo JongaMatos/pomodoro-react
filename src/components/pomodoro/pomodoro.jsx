@@ -40,6 +40,7 @@ function Pomodoro() {
 
     useEffect(() => {
         if (running && time > 0) {
+            // eslint-disable-next-line
             countdownTimeout = setTimeout(() => {
                 setTime(time - 1);
             }, 1000)
