@@ -42,12 +42,12 @@ function Menu() {
                     <div className='Option'>
                         Duração da tarefa:{taskTime / 60} min.
                         <button onClick={increaseTaskTime}>+</button>
-                        <button onClick={decreaseTaskTime}> -- </button>
+                        <button onClick={decreaseTaskTime}> — </button>
                     </div>
                     <div className='Option'>
                         Duração do descanso:{restTime / 60} min.
                         <button onClick={increaseRestTime}>+</button>
-                        <button onClick={decreaseRestTime}> -- </button>
+                        <button onClick={decreaseRestTime}> — </button>
                     </div>
                 </div>
             </div>

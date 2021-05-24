@@ -1,7 +1,5 @@
 .MenuHead {
     margin-right: auto;
-    /* margin-left: auto; */
-    /* margin-top: 0px; */
     display: flex;
 }
 
@@ -65,9 +63,12 @@
     cursor: pointer;
 }
 
+.Option button{
+    font-weight: 900;
+}
+
 .Times {
     margin-right: auto;
-    /* margin-left: 1rem; */
     margin-bottom: 1rem;
 }
 
