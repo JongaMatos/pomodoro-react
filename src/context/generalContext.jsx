@@ -9,7 +9,7 @@ export function GeneralProvider({ children }) {
     const [taskTime, setTaskTime] = useState();
     const [restTime, setRestTime] = useState();
     const [menuIsOpen, setMenuIsOpen] = useState(false);
-    const [soundAlert, setSoundAlert] = useState(true);
+    const [soundAlert, setSoundAlert] = useState();
     const [notificationOn, setNotificationOn] = useState();
 
     useEffect(() => {
@@ -87,7 +87,7 @@ export function GeneralProvider({ children }) {
             setTaskTime(tt);
         }
         else {
-            setTaskTime(60 * 0.1);
+            setTaskTime(60 * 25);
         }
         //restTime
         const rt = parseInt(localStorage.getItem('restTime'));
@@ -95,7 +95,7 @@ export function GeneralProvider({ children }) {
             setRestTime(rt);
         }
         else {
-            setRestTime(60 * 0.1);
+            setRestTime(60 * 5);
         }
         //Notificação
         const nO = localStorage.getItem('notificationOn');
@@ -116,6 +116,11 @@ export function GeneralProvider({ children }) {
     }
 
     const restoreDeafultTime = () => {
+        localStorage.setItem("taskTime", 25 * 60);
+        setTaskTime(25 * 60);
+        localStorage.setItem("restTime", 5 * 60);
+        setRestTime(5 * 60);
+
 
     }
 
@@ -135,6 +140,7 @@ export function GeneralProvider({ children }) {
             increaseRestTime,
             decreaseRestTime,
             restoreStatus,
+            restoreDeafultTime,
         }}>
             {children}
         </GeneralContext.Provider>

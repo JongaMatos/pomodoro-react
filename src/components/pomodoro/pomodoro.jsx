@@ -6,7 +6,8 @@ import reset from '../../assets/reset.png';
 import sleep from '../../assets/rest.png';
 import pause from '../../assets/pause.svg';
 import iconTimer from '../../assets/iconTimer.png';
-import more from '../../assets/more.png';
+// import more from '../../assets/more.png';
+import config from '../../assets/config.png'
 
 import './pomodoro.css';
 
@@ -34,6 +35,7 @@ function Pomodoro() {
             Notification.requestPermission();
         }
         handleResetTimer();
+        // eslint-disable-next-line
     }, []);
 
     useEffect(() => {
@@ -126,18 +128,22 @@ function Pomodoro() {
                 (
                     <div className='Head'>
                         <h2 className='Title'>Pomodoro <img src={sleep} alt="" /></h2>
-                        <button onClick={() => { openMenu() }}> <img src={more} alt="" /></button>
+                        <button onClick={() => { openMenu() }}> <img src={config} alt="config" /></button>
                     </div>
 
                 ) :
                 (
                     <div className='Head'>
                         <h2 className='Title'>Pomodoro <img className='TimerIcon' src={iconTimer} alt="" /></h2>
-                        <button onClick={() => { openMenu() }}> <img src={more} alt="" /></button>
+                        <button onClick={() => { openMenu() }}> <img src={config} alt="config" /></button>
                     </div>
                 )}
-            <div className='Timer'>
-                {min < 10 ? (`0${min}`) : (min)}:{sec < 10 ? (`0${sec}`) : (sec)}
+            <div className='TimerBox'>
+                <p>
+
+                    {min < 10 ? (`0${min}`) : (min)}:{sec < 10 ? (`0${sec}`) : (sec)}
+                </p>
+
             </div>
 
             <div className='TimerBtns'>

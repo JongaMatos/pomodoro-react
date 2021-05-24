@@ -1,5 +1,7 @@
-import React, { useContext } from 'react'
-import { GeneralContext } from '../../context/generalContext'
+import React, { useContext } from 'react';
+import Return from '../../assets/Return.svg';
+import { GeneralContext } from '../../context/generalContext';
+
 
 import './menu.css'
 
@@ -16,39 +18,43 @@ function Menu() {
         decreaseTaskTime,
         increaseRestTime,
         decreaseRestTime,
+        restoreDeafultTime,
     } = useContext(GeneralContext);
 
     return (
-        <div className='Card'>
+        <div className='MenuCard'>
             <div className='MenuHead'>
-                <h2>Menu</h2>
-                <button onClick={closeMenu}>close</button>
+                <button onClick={closeMenu}><img src={Return} alt="return" /></button>
+                <h2>Configurações</h2>
             </div>
 
             <div className='Options'>
                 <div className='Option'>
                     <input name='notification?' type="checkbox" checked={notificationOn} onChange={changeNotificationOn} />
-                    <label htmlFor="notification?"> Notificação</label>
+                    <label htmlFor="notification?" onClick={changeNotificationOn}> Notificação</label>
                 </div>
                 <div className='Option'>
                     <input name='soundAlert?' type="checkbox" checked={soundAlert} onChange={changeAlert} />
-                    <label htmlFor="soundAlert?"> Alerta Sonoro</label>
+                    <label htmlFor="soundAlert?" onClick={changeAlert}> Alerta Sonoro</label>
                 </div>
                 <div className='Times'>
-                    <h3>Configurações de tempo:</h3>
+                    <h3>Opções de duração:</h3>
                     <div className='Option'>
-                        Duração da tarefa:{taskTime / 60} minutos
+                        Duração da tarefa:{taskTime / 60} min.
                         <button onClick={increaseTaskTime}>+</button>
                         <button onClick={decreaseTaskTime}> -- </button>
                     </div>
                     <div className='Option'>
-                        Duração do descanso:{restTime / 60} minutos
+                        Duração do descanso:{restTime / 60} min.
                         <button onClick={increaseRestTime}>+</button>
                         <button onClick={decreaseRestTime}> -- </button>
                     </div>
                 </div>
-
-
+            </div>
+            <div className='restoreDefaultTime'>
+                <button onClick={restoreDeafultTime}>
+                    Resturar padrão
+                </button>
             </div>
         </div>
     )

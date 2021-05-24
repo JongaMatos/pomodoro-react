@@ -1,20 +1,27 @@
 @import url("https://fonts.googleapis.com/css2?family=Lobster&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Orbitron");
 Body {
     background-color: #26242D;
 }
 
-.Head{
+.Head {
     display: flex;
 }
-.Head button{
-    margin-left: 6rem;
-    background-color: #A5B9FF;
-    height: 1.5rem;
 
+.Head button {
+    margin-left: 5.7rem;
+    margin-top: 0.6rem;
+    background-color: #7d96f3;
+    height: 1.5rem;
+    border: 0px;
+    cursor: pointer;
+    border-radius: 8px;
 }
-.Head button img{
-    height: 0.8rem;
+
+.Head button img {
+    height: 1.2rem;
 }
+
 .Title {
     margin-top: 0.8rem;
     margin-bottom: 0.5rem;
@@ -23,7 +30,8 @@ Body {
     font-weight: 300;
     font-size: 2rem;
 }
-.Title .TimerIcon{
+
+.Title .TimerIcon {
     width: 1.3rem;
 }
 
@@ -34,15 +42,23 @@ Body {
     display: flex;
     flex-direction: column;
     max-width: 300px;
-    background-color: #A5B9FF;
+    background-color: #7d96f3;
     border-radius: 8px;
 }
 
-.Timer {
-    /* margin-top: 1rem; */
+.TimerBox {
     margin-right: auto;
     margin-left: auto;
     font-size: 3em;
+    border-radius: 6px;
+    font-family: "Orbitron";
+}
+
+.TimerBox p {
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 1.3rem;
+    margin-bottom: 0.5rem;
 }
 
 .TimerBtns {
@@ -51,26 +67,22 @@ Body {
     margin-top: 1rem;
     margin-bottom: 1rem;
     display: flex;
-    /* background-color: black; */
     height: 3rem
 }
 
 .Btn {
     cursor: pointer;
-    background-color: #A5B9FF;
-    /* background-color: #000000; */
+    background-color: #7d96f3;
     border: 0px;
-    /* height: 1.5rem; */
     width: 2rem;
-    /* padding: 0.5rem; */
     border-radius: 100%;
-    margin-left: 0.5rem;
-    margin-right: 0.5rem;
+    margin-left: 1.2rem;
+    margin-right: 1.2rem;
 }
 
 .Btn img {
     height: 1.5rem;
-    background-color: #A5B9FF;
+    background-color: #7d96f3;
 }
 
 .Btn .Pause {
