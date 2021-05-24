@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from 'react'
-
+import { isMobile } from 'react-device-detect'
 
 export const GeneralContext = createContext();
 
@@ -35,20 +35,23 @@ export function GeneralProvider({ children }) {
 
     }
     const changeNotificationOn = () => {
-        if (notificationOn === true) {
-            setNotificationOn(false);
-            localStorage.setItem('notificationOn', false);
-        }
-        else {
-            setNotificationOn(true);
-            localStorage.setItem('notificationOn', true);
-
-            if (Notification.permission !== 'granted') {
-                Notification.requestPermission();
+        if (!isMobile) {
+            if (notificationOn === true) {
+                setNotificationOn(false);
+                localStorage.setItem('notificationOn', false);
             }
+            else {
+                setNotificationOn(true);
+                localStorage.setItem('notificationOn', true);
+
+                if (Notification.permission !== 'granted') {
+                    Notification.requestPermission();
+                }
+            }
+        } else {
+            localStorage.setItem('notificationOn', false);
+            setNotificationOn(false);
         }
-
-
     }
 
     const increaseTaskTime = () => {

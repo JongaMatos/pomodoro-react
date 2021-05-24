@@ -1,12 +1,14 @@
 import React, { useState, useEffect, useContext } from 'react';
+import {isMobile} from "react-device-detect"
+
 import { GeneralContext } from '../../context/generalContext'
+
 
 import play from '../../assets/play.png';
 import reset from '../../assets/reset.png';
 import sleep from '../../assets/rest.png';
 import pause from '../../assets/pause.svg';
 import iconTimer from '../../assets/iconTimer.png';
-// import more from '../../assets/more.png';
 import config from '../../assets/config.png'
 
 import './pomodoro.css';
@@ -22,8 +24,6 @@ function Pomodoro() {
 
 
     let countdownTimeout;
-    // const taskTime = 0.1 * 60;
-    // const restTime = 0.05 * 60;
     const [time, setTime] = useState(taskTime);
     const [running, setRunning] = useState(false);
     const [rest, setRest] = useState(false);
@@ -31,7 +31,7 @@ function Pomodoro() {
     const sec = time % 60;
 
     useEffect(() => {
-        if (Notification.permission !== 'granted') {
+        if (Notification.permission !== 'granted' && !isMobile) {
             Notification.requestPermission();
         }
         handleResetTimer();

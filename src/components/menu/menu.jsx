@@ -1,8 +1,9 @@
 import React, { useContext } from 'react';
-import Return from '../../assets/Return.svg';
+import { BrowserView } from 'react-device-detect'
+
 import { GeneralContext } from '../../context/generalContext';
 
-
+import Return from '../../assets/Return.svg';
 import './menu.css'
 
 function Menu() {
@@ -29,10 +30,13 @@ function Menu() {
             </div>
 
             <div className='Options'>
-                <div className='Option'>
-                    <input name='notification?' type="checkbox" checked={notificationOn} onChange={changeNotificationOn} />
-                    <label htmlFor="notification?" onClick={changeNotificationOn}> Notificação</label>
-                </div>
+                <BrowserView>
+                    <div className='Option'>
+                        <input name='notification?' type="checkbox" checked={notificationOn} onChange={changeNotificationOn} />
+                        <label htmlFor="notification?" onClick={changeNotificationOn}> Notificação</label>
+                    </div>
+                </BrowserView>
+
                 <div className='Option'>
                     <input name='soundAlert?' type="checkbox" checked={soundAlert} onChange={changeAlert} />
                     <label htmlFor="soundAlert?" onClick={changeAlert}> Alerta Sonoro</label>
