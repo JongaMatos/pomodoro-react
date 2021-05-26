@@ -1,23 +1,23 @@
 {
   "files": {
     "main.css": "/pomodoro-react/static/css/main.f1d8c41b.chunk.css",
-    "main.js": "/pomodoro-react/static/js/main.adf3a642.chunk.js",
-    "main.js.map": "/pomodoro-react/static/js/main.adf3a642.chunk.js.map",
+    "main.js": "/pomodoro-react/static/js/main.84ec3765.chunk.js",
+    "main.js.map": "/pomodoro-react/static/js/main.84ec3765.chunk.js.map",
     "runtime-main.js": "/pomodoro-react/static/js/runtime-main.16cb0f16.js",
     "runtime-main.js.map": "/pomodoro-react/static/js/runtime-main.16cb0f16.js.map",
-    "static/js/2.6a1039bd.chunk.js": "/pomodoro-react/static/js/2.6a1039bd.chunk.js",
-    "static/js/2.6a1039bd.chunk.js.map": "/pomodoro-react/static/js/2.6a1039bd.chunk.js.map",
+    "static/js/2.94997605.chunk.js": "/pomodoro-react/static/js/2.94997605.chunk.js",
+    "static/js/2.94997605.chunk.js.map": "/pomodoro-react/static/js/2.94997605.chunk.js.map",
     "index.html": "/pomodoro-react/index.html",
     "static/css/main.f1d8c41b.chunk.css.map": "/pomodoro-react/static/css/main.f1d8c41b.chunk.css.map",
-    "static/js/2.6a1039bd.chunk.js.LICENSE.txt": "/pomodoro-react/static/js/2.6a1039bd.chunk.js.LICENSE.txt",
+    "static/js/2.94997605.chunk.js.LICENSE.txt": "/pomodoro-react/static/js/2.94997605.chunk.js.LICENSE.txt",
     "static/media/Return.94ad55a6.svg": "/pomodoro-react/static/media/Return.94ad55a6.svg",
     "static/media/config.61858692.png": "/pomodoro-react/static/media/config.61858692.png",
     "static/media/pause.94b3b031.svg": "/pomodoro-react/static/media/pause.94b3b031.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.16cb0f16.js",
-    "static/js/2.6a1039bd.chunk.js",
+    "static/js/2.94997605.chunk.js",
     "static/css/main.f1d8c41b.chunk.css",
-    "static/js/main.adf3a642.chunk.js"
+    "static/js/main.84ec3765.chunk.js"
   ]
 }
