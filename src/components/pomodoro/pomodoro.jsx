@@ -1,8 +1,10 @@
 import React, { useState, useEffect, useContext } from 'react';
-import {isMobile} from "react-device-detect"
+import { isMobile } from "react-device-detect"
 
 import { GeneralContext } from '../../context/generalContext'
 
+import endpomo from '../../assets/endpomo.wav'
+import endRest from '../../assets/endRest.mp3'
 
 import play from '../../assets/play.png';
 import reset from '../../assets/reset.png';
@@ -31,10 +33,11 @@ function Pomodoro() {
     const sec = time % 60;
 
     useEffect(() => {
-        if (Notification.permission !== 'granted' && !isMobile) {
+        if (Notification.permission !== 'granted') {
             Notification.requestPermission();
         }
         handleResetTimer();
+
         // eslint-disable-next-line
     }, []);
 
@@ -103,20 +106,24 @@ function Pomodoro() {
     const taskNotification = () => {
 
         if (soundAlert) {
-            new Audio('/endpomo.wav').play();
+            // new Audio('../../assets/endpomo.wav').play();
+            new Audio(endpomo).play();
+
         }
 
-        if (Notification.permission === 'granted' && notificationOn) {
+        if (Notification.permission === 'granted' && notificationOn && !isMobile) {
             new Notification("Bora descansar.");
         }
     }
     const restNotification = () => {
 
         if (soundAlert) {
-            new Audio('/endBreakout.mp3').play();
+            // new Audio('/endBreakout.mp3').play();
+            new Audio(endRest).play();
+
         }
 
-        if (Notification.permission === 'granted' && notificationOn) {
+        if (Notification.permission === 'granted' && notificationOn && !isMobile) {
             new Notification("Acabou descanso.");
         }
     }
