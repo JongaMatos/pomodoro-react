@@ -33,7 +33,7 @@ function Pomodoro() {
     const sec = time % 60;
 
     useEffect(() => {
-        if (Notification.permission !== 'granted') {
+        if (Notification.permission !== 'granted' && !isMobile) {
             Notification.requestPermission();
         }
         handleResetTimer();
@@ -106,7 +106,6 @@ function Pomodoro() {
     const taskNotification = () => {
 
         if (soundAlert) {
-            // new Audio('../../assets/endpomo.wav').play();
             new Audio(endpomo).play();
 
         }
@@ -118,7 +117,6 @@ function Pomodoro() {
     const restNotification = () => {
 
         if (soundAlert) {
-            // new Audio('/endBreakout.mp3').play();
             new Audio(endRest).play();
 
         }

@@ -121,9 +121,9 @@ export function GeneralProvider({ children }) {
 
     const restoreDeafultTime = () => {
         localStorage.setItem("taskTime", 25 * 60);
-        setTaskTime(0.05 * 60);
+        setTaskTime(25 * 60);
         localStorage.setItem("restTime", 5 * 60);
-        setRestTime(0.05 * 60);
+        setRestTime(5 * 60);
 
 
     }
